@@ -5,6 +5,7 @@ const btnAdd = document.querySelector(".btn-add");
 const btnOrder = document.querySelector(".btn-order")
 const output = document.querySelector(".listOutput")
 const totalOutput = document.querySelector(".total")
+const ulOutput = document.querySelector(".listOutput")
 
 //Event creation
 btnAdd.addEventListener("click", addNumbers);
@@ -41,15 +42,18 @@ totalOutput.innerText = total
 
 function addNumbers(e){
   e.preventDefault()
-  const selectionDiv = document.createElement("div");
+
+  
   const selectedNumber = document.createElement("li");
-  selectedNumber.innerText = number.value
-  selectionDiv.appendChild(selectedNumber);
+ 
+  selectedNumber.innerText = `Number: ${number.value} >`
+  ulOutput.appendChild(selectedNumber);
   const selectedBet = document.createElement("i")
-  selectedBet.innerText = bet.value
-  selectionDiv.appendChild(selectedBet);
-  output.appendChild(selectionDiv)
+  selectedBet.innerText =  `> Bet: ${bet.value} `
+  selectedNumber.appendChild(selectedBet);
+  output.appendChild(selectedNumber)
   let select = new numberBet (number.value, bet.value);
+
   calcTotal()
   holdArray.push(select)
 

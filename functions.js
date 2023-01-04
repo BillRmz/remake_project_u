@@ -10,6 +10,7 @@ const ulOutput = document.querySelector(".listOutput")
 //Event creation
 btnAdd.addEventListener("click", addNumbers);
 btnOrder.addEventListener("click", addOrder);
+ulOutput.addEventListener("click", deleteRow);
 
 //arrays 
 let orderArray = []
@@ -43,14 +44,16 @@ totalOutput.innerText = total
 function addNumbers(e){
   e.preventDefault()
 
-  
+  const deleteButton = document.createElement("i")
+  deleteButton.innerHTML = `<i class="fa-solid fa-x"></i>`;
+
   const selectedNumber = document.createElement("li");
- 
   selectedNumber.innerText = `Number: ${number.value} >`
   ulOutput.appendChild(selectedNumber);
   const selectedBet = document.createElement("i")
   selectedBet.innerText =  `> Bet: ${bet.value} `
   selectedNumber.appendChild(selectedBet);
+  selectedNumber.appendChild(deleteButton)
   output.appendChild(selectedNumber)
   let select = new numberBet (number.value, bet.value);
 
@@ -78,4 +81,12 @@ totalOutput.innerText = '';
 
  
 
+function deleteRow(e){
+  const item = e.target;
+  console.log(item.classList[0])
+  if (item.classList[0]==='fa-solid'){
+    ulOutput.removeChild(ulOutput.lastElementChild);
+    
+  }
 
+}
